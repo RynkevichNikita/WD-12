@@ -5,6 +5,7 @@ use App\Http\Controllers\DateTimeController;
 use App\Http\Controllers\FictionUsersController;
 use App\Http\Controllers\CalculateController;
 use App\Http\Controllers\ContactController;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,9 @@ Route::view('/greet/{name}', 'greet');
 
 Route::get('/api/users', [FictionUsersController::class, 'show']);
 
-Route::get('/time', [DateTimeController::class, 'show']);
+Route::get('/time', function () {
+    return response()->json(Carbon::now()->addHours(3));
+});
 
 Route::get('/new-home', function () {
     return 'Welcome to new Home';
