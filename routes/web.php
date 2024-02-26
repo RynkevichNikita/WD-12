@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentsReportController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('reports', [PaymentsReportController::class, 'index']);
+
+Route::post('reports', [PaymentsReportController::class, 'show']);
+
+Route::get('register', [WelcomeController::class, 'index']);
+
+Route::post('register', [WelcomeController::class, 'store']);
