@@ -9,8 +9,6 @@ class CustomerController extends Controller
 {
     public function update(CustomerUpdateRequest $request) 
     {
-        $request->validated();
-
         Customer::where('customerNumber', '=', $request['customerNumber'])
             ->update($request->only(['contactLastName', 'contactFirstName', 'phone', 'postalCode']));
 
