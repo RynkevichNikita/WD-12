@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DateTimeController;
-use App\Http\Controllers\FictionUsersController;
 use App\Http\Controllers\CalculateController;
 use App\Http\Controllers\ContactController;
 use Carbon\Carbon;
@@ -22,9 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/user', function () {
+    return 'User is anonymous';
+});
+
 Route::view('/welcome', 'anotherWelcome');
 
-Route::get('/user/{id?}', function (string $id = 'User is anonymous') {
+Route::get('/user/{id?}', function ($id) {
     return 'User ID: '.$id;
 });
 
@@ -32,7 +35,7 @@ Route::get('/post/{slug}', function($slug) {
     return 'Success';
 })->where('slug', '^[a-z0-9-]+$');
 
-Route::match(['get', 'post'], '/submit-contact-form', function () {
+Route::get('/submit-contact-form', function () {
     return view('post');
 });
 
@@ -42,10 +45,8 @@ Route::post('submit-contact-form', function () {
 
 Route::view('/greet/{name}', 'greet');
 
-Route::get('/api/users', [FictionUsersController::class, 'show']);
-
 Route::get('/time', function () {
-    return response()->json(Carbon::now()->addHours(3));
+    return response()->json(Carbon::now()->addHours(3)->toDateTimeString());
 });
 
 Route::get('/new-home', function () {
