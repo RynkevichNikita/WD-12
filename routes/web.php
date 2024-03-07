@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EmployeeTokyoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,7 @@ Route::get('/', function () {
 Route::get('register', [RegisterController::class, 'index']);
 
 Route::post('register', [RegisterController::class, 'store']);
+
+Route::get('tokyo', [EmployeeTokyoController::class, 'index']);
+
+Route::post('tokyo', [EmployeeTokyoController::class, 'validation']);

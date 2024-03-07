@@ -4,23 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+    <title>Document</title>
 </head>
 <body>
-    <form action="register" method="post">
+    <form action="tokyo" method="POST">
         @csrf
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <div>
-            <label for="confirm_password">Confirm your password</label>
-            <input type="password" name="confirm_password" id="confirm_password">
-        </div>
+        <label for="employeeNumber">Number of employee</label>
+        <input type="number" name="employeeNumber" id="employeeNumber">
         <button type="submit">Submit</button>
     </form>
     @if ($errors->any())

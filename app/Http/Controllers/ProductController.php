@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\ProductFilterRequest;
 
 class ProductController extends Controller
 {
     
-    public function index(Request $requset)
+    public function index(ProductFilterRequest $request)
     {
-        $vendor = $requset->query('vendor');
-        $category = $requset->query('category');
-        $price = $requset->query('price');
+        $vendor = $request->query('vendor');
+        $category = $request->query('category');
+        $price = $request->query('price');
         if ($vendor) {
             $products = Product::where('productVendor', $vendor)->get();
         } else if ($category) {

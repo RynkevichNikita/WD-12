@@ -3,9 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\EmployeeTokio;
 
-class RegisterRequest extends FormRequest
+class EmployeeTokyoRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -22,9 +25,7 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', 'min:8'],
-            'confirm_password' => ['required', 'same:password'],
+            'employeeNumber' => ['required', 'exists:employees', new EmployeeTokio],
         ];
     }
 }
