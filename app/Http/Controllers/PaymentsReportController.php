@@ -24,7 +24,10 @@ class PaymentsReportController extends Controller
         } else {
             $payments = Payment::where('customerNumber', '=', $request->customer)->get();
         }
-        SendCustomerPaymentsReport::dispatch($payments->toJson());
-        return 'Progress is progressing!';
+        if(isset($payments)) {
+            SendCustomerPaymentsReport::dispatch($payments->toJson());
+            return 'Progress is progressing!';
+        }
+        return 'Customer/customers have no payment records';
     }
 }
