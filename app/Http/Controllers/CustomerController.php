@@ -28,7 +28,7 @@ class CustomerController extends Controller
 
     public function delete($id)
     {
-        // $customer = Customer::destroy($id);
+        $customer = Customer::destroy($id);
 
         // $customer = DB::table('customers')
         //             ->join('payments', 'customers.customerNumber', '=', 'payments.customerNumber')
@@ -37,13 +37,13 @@ class CustomerController extends Controller
         //             ->where('customers.customerNumber', '=', $id)
         //             ->delete();
 
-        $customer = DB::statement('delete `customers`, `payments`, `orders`, `orderdetails` from `customers` 
-                    inner join `payments` 
-                        on `customers`.`customerNumber` = `payments`.`customerNumber` 
-                    inner join `orders` 
-                        on `customers`.`customerNumber` = `orders`.`customerNumber` 
-                    inner join `orderdetails` 
-                        on `orders`.`orderNumber` = `orderdetails`.`orderNumber` 
-                    where `customers`.`customerNumber` = 112');
+        // $customer = DB::statement('delete `customers`, `payments`, `orders`, `orderdetails` from `customers` 
+        //             inner join `payments` 
+        //                 on `customers`.`customerNumber` = `payments`.`customerNumber` 
+        //             inner join `orders` 
+        //                 on `customers`.`customerNumber` = `orders`.`customerNumber` 
+        //             inner join `orderdetails` 
+        //                 on `orders`.`orderNumber` = `orderdetails`.`orderNumber` 
+        //             where `customers`.`customerNumber` = 112');
     }
 }
