@@ -15,14 +15,11 @@ class AdminPayment
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (isset($request->role)) {
-            switch ($request->role) {
-                case 'admin':
-                    return redirect()->route('admin');
-                case 'user':
-                    return redirect()->route('user');
-            }
+        if ($request->session()->get('Secret') == 'secret') 
+        {
+             return redirect()->route('admin');
         }
+
         return $next($request);
     }
 }

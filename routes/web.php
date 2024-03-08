@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\MaintenanceMode;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\LoginAdminController;
 use App\Http\Middleware\AdminPayment;
 
 /*
@@ -22,8 +23,13 @@ Route::get('/', function () {
 
 Route::view('maintenance', 'maintenance')->name('maintenance')->withoutMiddleware([MaintenanceMode::class]);
 
-Route::view('loginadmin', 'login')->middleware('admin');
+Route::get('loginadmin', [LoginAdminController::class, 'index']);
 
-Route::get('payments', [Payment::class, 'index'])->name('user');
+Route::post('loginadmin', [LoginAdminController::class, 'role']);
 
 Route::get('admin/payments', [Payment::class, 'adminIndex'])->name('admin');
+
+Route::middleware('admin')->group(function () {
+
+    Route::get('payments', [Payment::class, 'index'])->name('user');
+});

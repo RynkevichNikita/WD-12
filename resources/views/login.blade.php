@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="/loginadmin" method="get">
+    <form action="/loginadmin" method="post">
         @csrf
         <select name="role" id="role">
             <option name="admin" id="admin">admin</option>
