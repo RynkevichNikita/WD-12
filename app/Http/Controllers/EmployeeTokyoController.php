@@ -14,7 +14,6 @@ class EmployeeTokyoController extends Controller
     }
 
     public function validation(EmployeeTokyoRequest $request) {
-        $validated = $request->validated();
 
         return 'Yea, he is from Tokyo';
     }
