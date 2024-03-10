@@ -15,7 +15,7 @@ class MaintenanceMode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $maintenance = false;
+        $maintenance = true;
 
         if ($maintenance === true) {
             return redirect()->route('maintenance');
