@@ -3,14 +3,19 @@
 namespace App\Observers;
 
 use App\Models\Customer;
-use Illuminate\Support\Facades\Log;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Payment;
 
 class CustomerObserver
 {
-    public function deleted(Customer $customer): void
+    public function deleting(Customer $customer): void
     {
-        Log::alert("User {id} was deleted", [
-            'id' => $user->id
-        ]);
+        $customerNumber = $customer->customerNumber;
+        OrderDetail::whereHas('order', function ($query) use($customerNumber) {
+            $query->where('customerNumber', $customerNumber);
+        })->delete();
+        Order::where('customerNumber', $customerNumber)->delete();
+        Payment::where('customerNumber', $customerNumber)->delete();
     }
 }
